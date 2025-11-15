@@ -2,13 +2,13 @@ export const resumeData = {
   personal: {
     name: "Mahavir Ganapati Dash",
     title: "Backend Engineer | System Design | Distributed Systems",
-    email: "mahavir.s.dr@gmail.com",
+    email: "mahavirdash2017@gmail.com",
     phone: "6370106741",
     location: "India (UTC +5.30)",
-    website: "github.com/mahavirdash",
-    linkedin: "linkedin.com/in/mahavirdash",
-    github: "github.com/mahavirdash",
-    twitter: "twitter.com/mahavirdash",
+    website: "github.com/crypto-priest",
+    linkedin: "linkedin.com/in/crypto-priest",
+    github: "github.com/crypto-priest",
+    twitter: "x.com/27Mahavir",
   },
 
   summary: "Backend Engineer with 3+ years of experience specializing in system design, distributed systems, and scalable backend architecture using Rust. Expertise in designing authentication systems, consensus mechanisms, and high-performance APIs serving 10,000+ users. Experienced in building production-grade distributed systems through blockchain development (Substrate/Polkadot). Skilled in API security, database optimization, and microservices architecture. Polkadot Blockchain Academy graduate and Web3 Foundation grant recipient, with a strong foundation in teaching and mentoring developers.",
