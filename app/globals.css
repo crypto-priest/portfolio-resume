@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+/* Rust-Inspired Developer Design System */
+:root {
+  /* Light mode - Rust color palette */
+  --bg: #fafafa;
+  --bg-card: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #666666;
+  --accent: #CE422B; /* Rust orange */
+  --accent-hover: #a83520;
+  --accent-secondary: #f74c00; /* Brighter orange */
+  --rust-brown: #8B4513;
+  --rust-tan: #DEB887;
+  --border: #e5e5e5;
+  --code-bg: #f5f5f5;
+  --success: #86B817; /* Rust green for success messages */
+}
+
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --accent: #f74c00; /* Rust orange for dark mode */
+  --accent-hover: #ff6e2e;
+  --accent-secondary: #CE422B;
+  --rust-brown: #CD853F;
+  --rust-tan: #F4A460;
+  --border: #30363d;
+  --code-bg: #0d1117;
+  --success: #9FD356;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-geist-mono), 'SF Mono', 'Consolas', 'Monaco', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Smooth transitions */
+a {
+  transition: color 0.2s ease;
+}
+
+* {
+  transition: background-color 0.2s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Selection color */
+::selection {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* Rust-themed developer elements */
+.section-header {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.section-header::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Code-style section comments */
+.section-comment {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.section-comment::before {
+  content: "// ";
+  color: var(--accent);
+}
+
+/* Terminal-style prompt */
+.terminal-prompt {
+  color: var(--accent);
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+/* Cargo/Crates styling */
+.crate-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.crate-badge::before {
+  content: "📦";
+  font-size: 0.875rem;
+}
+
+/* Rust-specific UI enhancements */
+.rust-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  transition: all 0.3s ease;
+}
+
+.rust-card:hover {
+  border-left-color: var(--accent-hover);
+  box-shadow: 0 4px 12px rgba(206, 66, 43, 0.1);
+  transform: translateX(4px);
+}
+
+.rust-version-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--rust-brown) 100%);
+  color: white;
+  border-radius: 0.25rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.ferris-emoji {
+  display: inline-block;
+  animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* Rust syntax-inspired styling */
+.rust-keyword {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.rust-string {
+  color: var(--success);
+}
+
+.rust-comment {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .no-print {
+    display: none;
+  }
+
+  main {
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
