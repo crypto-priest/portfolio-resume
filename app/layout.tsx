@@ -13,13 +13,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Developer Portfolio | Full Stack Engineer",
-  description: "Modern developer portfolio showcasing projects, skills, and experience. Built with Next.js, TypeScript, and terminal aesthetics.",
-  keywords: ["portfolio", "developer", "full stack", "web development", "software engineer"],
-  authors: [{ name: "Your Name" }],
+  title: "Mahavir Dash | Backend Engineer",
+  description: "Backend Engineer specializing in Rust, distributed systems, and blockchain development. 3+ years experience building scalable systems.",
+  keywords: ["Rust", "Backend Engineer", "Distributed Systems", "Blockchain", "Substrate", "System Design"],
+  authors: [{ name: "Mahavir Ganapati Dash" }],
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+    ],
+  },
   openGraph: {
-    title: "Developer Portfolio",
-    description: "Modern developer portfolio with terminal aesthetics",
+    title: "Mahavir Dash | Backend Engineer",
+    description: "Backend Engineer specializing in Rust, distributed systems, and blockchain development",
     type: "website",
   },
 };

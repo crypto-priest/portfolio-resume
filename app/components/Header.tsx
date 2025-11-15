@@ -5,9 +5,14 @@ export default function Header() {
 
   return (
     <header>
-      <p className="text-[var(--text-muted)] mb-8">
-        I'm a {personal.title.toLowerCase()} based in {personal.location}. Currently working on building scalable web applications and exploring new technologies.
-      </p>
+      <div className="mb-10">
+        <p className="text-2xl md:text-3xl text-[var(--accent)] font-bold mb-6 leading-tight">
+          {personal.title}
+        </p>
+        <p className="text-lg md:text-xl text-[var(--text-muted)] leading-relaxed max-w-3xl">
+          Based in {personal.location}. Building scalable distributed systems and exploring cutting-edge backend technologies.
+        </p>
+      </div>
       <div className="flex gap-3 flex-wrap" id="contact">
         <a
           href={`mailto:${personal.email}`}

@@ -7,26 +7,36 @@ export default function Education() {
         <span className="text-[var(--accent)]">struct</span> Education
       </h2>
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         {resumeData.education.map((edu) => (
-          <div key={edu.id}>
-            <div className="font-bold text-[var(--text)]">{edu.degree}</div>
-            <div className="text-[var(--text-muted)] text-sm mt-1">
-              {edu.school}
+          <div key={edu.id} className="hover:scale-[1.01] transition-transform">
+            <div className="mb-2 font-mono text-base">
+              <span className="text-[var(--accent)]">let</span>{" "}
+              <span className="text-[var(--text)] font-bold">{edu.degree.toLowerCase().replace(/\s+/g, '_')}</span>
+              <span className="text-[var(--text-muted)]"> = </span>
+              <span className="text-[var(--text)]">&quot;{edu.school}&quot;</span>
+              <span className="text-[var(--text-muted)]">;</span>
             </div>
             {(edu as any).branch && (
-              <div className="text-[var(--text-muted)] text-sm">
-                Branch: {(edu as any).branch}
+              <div className="text-[var(--text-muted)] mb-2 ml-4 text-base">
+                <span className="text-[var(--accent)]">//</span> {(edu as any).branch}
               </div>
             )}
             {(edu as any).description && (
-              <div className="text-[var(--text)] text-sm mt-2">
-                {(edu as any).description}
+              <div className="text-[var(--text-muted)] mb-3 ml-4 text-base">
+                <span className="text-[var(--accent)]">//</span> {(edu as any).description}
               </div>
             )}
-            <div className="text-[var(--accent)] text-xs mt-1">
-              {edu.period} · {edu.location}
-              {(edu as any).gpa && ` · ${(edu as any).gpa}`}
+            <div className="flex flex-wrap gap-3 ml-4 text-base">
+              <span className="text-[var(--accent)] font-mono">{edu.period}</span>
+              <span className="text-[var(--text-muted)]">@</span>
+              <span className="text-[var(--text-muted)]">{edu.location}</span>
+              {(edu as any).gpa && (
+                <>
+                  <span className="text-[var(--text-muted)]">·</span>
+                  <span className="text-[var(--accent)] font-mono">{(edu as any).gpa}</span>
+                </>
+              )}
             </div>
           </div>
         ))}
