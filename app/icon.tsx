@@ -12,21 +12,15 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 20,
-          background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
+          background: 'transparent',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#CE422B',
-          fontFamily: 'monospace',
-          fontWeight: 'bold',
-          border: '2px solid #CE422B',
-          borderRadius: '6px',
         }}
       >
-        $
+        <div style={{ fontSize: 34 }}>🦀</div>
       </div>
     ),
     {

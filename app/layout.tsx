@@ -18,10 +18,7 @@ export const metadata: Metadata = {
   keywords: ["Rust", "Backend Engineer", "Distributed Systems", "Blockchain", "Substrate", "System Design"],
   authors: [{ name: "Mahavir Ganapati Dash" }],
   icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
-    ],
+    icon: '/icon',
   },
   openGraph: {
     title: "Mahavir Dash | Backend Engineer",
