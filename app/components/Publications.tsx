@@ -2,15 +2,15 @@ import { resumeData } from "../data/resume-data";
 
 export default function Publications() {
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-10 section-header">
-        <span className="text-[var(--accent)]">pub mod</span> crates
-      </h2>
+    <div className="font-mono">
+      <div className="text-3xl font-bold mb-4">
+        <span className="text-[var(--accent)]">pub mod</span> <span className="text-[var(--text)]">crates</span> <span className="text-[var(--text-muted)]">{"{"}</span>
+      </div>
 
-      <div className="space-y-5">
+      <div className="space-y-6">
         {resumeData.publications.map((pub) => (
           <div key={pub.id} className="hover:scale-[1.01] transition-transform">
-            <div className="mb-2 font-mono text-base">
+            <div className="mb-2 text-lg" style={{ paddingLeft: '2rem' }}>
               <span className="text-[var(--accent)]">use</span>{" "}
               <a
                 href={pub.link}
@@ -21,14 +21,18 @@ export default function Publications() {
                 {pub.name}
               </a>
               <span className="text-[var(--text-muted)]">;</span>
-              <span className="text-sm text-[var(--text-muted)] ml-3">{pub.platform}</span>
+              <span className="text-base text-[var(--text-muted)] ml-3">
+                <span className="text-[var(--accent)]">//</span> {pub.platform}
+              </span>
             </div>
-            <p className="text-[var(--text)] leading-relaxed ml-4 text-base">
+            <div className="text-[var(--text)] leading-relaxed text-base" style={{ paddingLeft: '2rem' }}>
               <span className="text-[var(--accent)]">//</span> {pub.description}
-            </p>
+            </div>
           </div>
         ))}
       </div>
+
+      <div className="text-3xl font-bold text-[var(--text-muted)] mt-6">{"}"}</div>
     </div>
   );
 }

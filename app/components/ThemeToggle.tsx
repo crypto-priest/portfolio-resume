@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     // Check for saved theme preference or default to 'dark'
-    const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
+    const savedTheme = (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
+    setTheme(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    setMounted(true);
   }, []);
 
   const toggleTheme = () => {
@@ -20,6 +20,20 @@ export default function ThemeToggle() {
     localStorage.setItem('theme', newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
   };
+
+  // Don't render until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <button
+        className="px-3 py-2 bg-[var(--code-bg)] border border-[var(--border)] rounded text-[var(--text)] transition-all font-mono text-sm flex items-center gap-2"
+        aria-label="Toggle theme"
+        disabled
+      >
+        <div className="w-4 h-4"></div>
+        <span>theme</span>
+      </button>
+    );
+  }
 
   return (
     <button

@@ -5,8 +5,8 @@
   /* Light mode - Rust color palette */
   --bg: #fafafa;
   --bg-card: #ffffff;
-  --text: #1a1a1a;
-  --text-muted: #666666;
+  --text: #0a0a0a;
+  --text-muted: #525252;
   --accent: #CE422B; /* Rust orange */
   --accent-hover: #a83520;
   --accent-secondary: #f74c00; /* Brighter orange */
@@ -20,8 +20,8 @@
 [data-theme="dark"] {
   --bg: #0d1117;
   --bg-card: #161b22;
-  --text: #e6edf3;
-  --text-muted: #8b949e;
+  --text: #f0f6fc;
+  --text-muted: #9ea7b3;
   --accent: #f74c00; /* Rust orange for dark mode */
   --accent-hover: #ff6e2e;
   --accent-secondary: #CE422B;
@@ -49,16 +49,73 @@ html, body {
 }
 
 body {
-  font-family: var(--font-geist-mono), 'SF Mono', 'Consolas', 'Monaco', monospace;
+  font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.8;
+  line-height: 1.6;
   font-size: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  tab-size: 4;
+}
+
+/* Code-themed background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image:
+    linear-gradient(0deg, transparent 24%, var(--text-muted) 25%, var(--text-muted) 26%, transparent 27%, transparent 74%, var(--text-muted) 75%, var(--text-muted) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, var(--text-muted) 25%, var(--text-muted) 26%, transparent 27%, transparent 74%, var(--text-muted) 75%, var(--text-muted) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
+}
+
+/* Code pattern overlay */
+body::after {
+  content: 'fn main() { }\nimpl Trait { }\nuse std::collections::HashMap;\nlet mut x = String::new();\npub struct Config { }\nconst MAX: usize = 100;\nmatch value { }\nfor item in items { }\nif condition { }\nmod module;\ntrait Behavior { }\nenum Status { }';
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  width: 300px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  line-height: 2;
+  color: var(--text-muted);
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 0;
+  white-space: pre-wrap;
+  animation: floatCode 60s linear infinite;
+}
+
+@keyframes floatCode {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(1deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.04;
+}
+
+[data-theme="dark"] body::after {
+  opacity: 0.03;
+}
+
+/* Ensure content is above background */
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Smooth transitions */
