@@ -1,273 +1,293 @@
 @import "tailwindcss";
 
-/* Rust-Inspired Developer Design System */
+/* Modern Dark Portfolio Theme - Purple */
 :root {
-  /* Light mode - Rust color palette */
-  --bg: #fafafa;
-  --bg-card: #ffffff;
-  --text: #0a0a0a;
-  --text-muted: #525252;
-  --accent: #CE422B; /* Rust orange */
-  --accent-hover: #a83520;
-  --accent-secondary: #f74c00; /* Brighter orange */
-  --rust-brown: #8B4513;
-  --rust-tan: #DEB887;
-  --border: #e5e5e5;
-  --code-bg: #f5f5f5;
-  --success: #86B817; /* Rust green for success messages */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #161616;
+  --bg-hover: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #e5e5e5;
+  --text-muted: #737373;
+  --text-subtle: #525252;
+  --accent: #a855f7;
+  --accent-hover: #9333ea;
+  --border: #262626;
+  --border-hover: #404040;
 }
 
-[data-theme="dark"] {
-  --bg: #0d1117;
-  --bg-card: #161b22;
-  --text: #f0f6fc;
-  --text-muted: #9ea7b3;
-  --accent: #f74c00; /* Rust orange for dark mode */
-  --accent-hover: #ff6e2e;
-  --accent-secondary: #CE422B;
-  --rust-brown: #CD853F;
-  --rust-tan: #F4A460;
-  --border: #30363d;
-  --code-bg: #0d1117;
-  --success: #9FD356;
+[data-theme="light"] {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f5f5f5;
+  --bg-card: #ffffff;
+  --bg-hover: #f0f0f0;
+  --text-primary: #0a0a0a;
+  --text-secondary: #171717;
+  --text-muted: #737373;
+  --text-subtle: #a3a3a3;
+  --accent: #9333ea;
+  --accent-hover: #7e22ce;
+  --border: #e5e5e5;
+  --border-hover: #d4d4d4;
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
 body {
-  font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  font-size: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  tab-size: 4;
-}
-
-/* Code-themed background pattern */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.03;
-  background-image:
-    linear-gradient(0deg, transparent 24%, var(--text-muted) 25%, var(--text-muted) 26%, transparent 27%, transparent 74%, var(--text-muted) 75%, var(--text-muted) 76%, transparent 77%, transparent),
-    linear-gradient(90deg, transparent 24%, var(--text-muted) 25%, var(--text-muted) 26%, transparent 27%, transparent 74%, var(--text-muted) 75%, var(--text-muted) 76%, transparent 77%, transparent);
-  background-size: 50px 50px;
-}
-
-/* Code pattern overlay */
-body::after {
-  content: 'fn main() { }\nimpl Trait { }\nuse std::collections::HashMap;\nlet mut x = String::new();\npub struct Config { }\nconst MAX: usize = 100;\nmatch value { }\nfor item in items { }\nif condition { }\nmod module;\ntrait Behavior { }\nenum Status { }';
-  position: fixed;
-  top: 10%;
-  right: 5%;
-  width: 300px;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 11px;
-  line-height: 2;
-  color: var(--text-muted);
-  opacity: 0.02;
-  pointer-events: none;
-  z-index: 0;
-  white-space: pre-wrap;
-  animation: floatCode 60s linear infinite;
-}
-
-@keyframes floatCode {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-30px) rotate(1deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-
-[data-theme="dark"] body::before {
-  opacity: 0.04;
-}
-
-[data-theme="dark"] body::after {
-  opacity: 0.03;
-}
-
-/* Ensure content is above background */
-body > * {
-  position: relative;
-  z-index: 1;
 }
 
 /* Smooth transitions */
-a {
-  transition: color 0.2s ease;
+*, *::before, *::after {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-* {
-  transition: background-color 0.2s ease;
-}
-
-/* Custom scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg);
+  background: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--border);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
 
-/* Selection color */
+/* Selection */
 ::selection {
   background: var(--accent);
   color: #ffffff;
 }
 
-/* Rust-themed developer elements */
-.section-header {
-  position: relative;
-  padding-left: 1.5rem;
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-.section-header::before {
-  content: ">";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-weight: bold;
+@media (min-width: 640px) {
+  .container {
+    padding: 0 2rem;
+  }
 }
 
-/* Code-style section comments */
-.section-comment {
-  color: var(--text-muted);
-  font-style: italic;
-  font-size: 0.875rem;
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 3rem;
+  }
+}
+
+/* Page wrapper */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+}
+
+/* Section */
+.section {
+  padding: 3rem 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+}
+
+/* Page title */
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
   margin-bottom: 1rem;
 }
 
-.section-comment::before {
-  content: "// ";
-  color: var(--accent);
+@media (min-width: 768px) {
+  .page-title {
+    font-size: 3rem;
+  }
 }
 
-/* Terminal-style prompt */
-.terminal-prompt {
-  color: var(--accent);
-  font-weight: 600;
-  margin-right: 0.5rem;
-}
-
-/* Cargo/Crates styling */
-.crate-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.125rem 0.5rem;
-  border-radius: 0.25rem;
-  background: var(--code-bg);
-  border: 1px solid var(--border);
-  font-size: 0.75rem;
+.page-subtitle {
+  font-size: 1rem;
   color: var(--text-muted);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
 }
 
-.crate-badge::before {
-  content: "📦";
-  font-size: 0.875rem;
+@media (min-width: 768px) {
+  .page-subtitle {
+    font-size: 1.125rem;
+  }
 }
 
-/* Rust-specific UI enhancements */
-.rust-card {
-  position: relative;
+/* Section title */
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Card */
+.card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
+  border-radius: 1rem;
+  padding: 1.5rem;
   transition: all 0.3s ease;
 }
 
-.rust-card:hover {
-  border-left-color: var(--accent-hover);
-  box-shadow: 0 4px 12px rgba(206, 66, 43, 0.1);
-  transform: translateX(4px);
+@media (min-width: 768px) {
+  .card {
+    padding: 2rem;
+  }
 }
 
-.rust-version-badge {
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+/* Tag */
+.tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.125rem 0.5rem;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--rust-brown) 100%);
-  color: white;
-  border-radius: 0.25rem;
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-.ferris-emoji {
-  display: inline-block;
-  animation: wave 2s ease-in-out infinite;
-}
-
-@keyframes wave {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-10deg); }
-  75% { transform: rotate(10deg); }
-}
-
-/* Rust syntax-inspired styling */
-.rust-keyword {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.rust-string {
-  color: var(--success);
-}
-
-.rust-comment {
+  padding: 0.375rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
   color: var(--text-muted);
-  font-style: italic;
+  transition: all 0.2s ease;
 }
 
+.tag:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+/* Button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #ffffff;
+  border: 2px solid var(--accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Grid layouts */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Text center */
+.text-center {
+  text-align: center;
+}
+
+/* Print */
 @media print {
   body {
     background: white;
     color: black;
   }
-
   .no-print {
-    display: none;
-  }
-
-  main {
-    box-shadow: none !important;
-    padding: 0 !important;
+    display: none !important;
   }
 }
