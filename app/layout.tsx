@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Syne } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const syne = Syne({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-syne",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={syne.variable}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -44,7 +44,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={syne.className}>
         <div className="page-wrapper">
           <Navbar />
           <main className="main-content">
