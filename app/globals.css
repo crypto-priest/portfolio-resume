@@ -101,6 +101,19 @@ a:hover {
 
 .github-app {
   min-height: 100vh;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .github-app {
+    width: 100%;
+    min-width: 0;
+  }
 }
 
 .github-header {
@@ -957,6 +970,7 @@ a:hover {
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
   background: var(--color-canvas-subtle);
   border-bottom: 1px solid var(--color-border-default);
   padding: 12px 16px;
@@ -2114,12 +2128,12 @@ a:hover {
 @media (max-width: 768px) {
   .hire-cta-card {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
     padding: 16px;
   }
 
   .hire-cta-visual {
-    order: -1;
+    display: none;
   }
 
   .hire-cta-actions {
@@ -2131,102 +2145,89 @@ a:hover {
   }
 
   .hire-cta-title {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .hire-cta-description {
+    font-size: 13px;
+  }
+
+  .hire-cta-badge {
+    font-size: 11px;
+    padding: 3px 10px;
   }
 }
 
 /* ============================================
-   MOBILE RESPONSIVE OVERHAUL - GitHub Style
+   MOBILE RESPONSIVE - GitHub Style
    ============================================ */
 
 @media (max-width: 768px) {
-  /* Main layout */
+  /* Main layout - full width on mobile */
   .github-main {
     padding: 16px;
-    padding-top: 64px;
+    padding-top: 60px;
+    max-width: 100% !important;
+    margin: 0 !important;
+    width: 100% !important;
   }
 
-  /* Profile sidebar - horizontal compact layout */
+  .github-profile-layout {
+    gap: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .profile-content {
+    width: 100%;
+  }
+
+  /* Page container full width */
+  .page-container {
+    padding: 0;
+    max-width: 100% !important;
+    width: 100%;
+  }
+
+  /* Hide sidebar on mobile - show CTA card instead */
   .profile-sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--color-border-default);
-    margin-bottom: 16px;
-  }
-
-  .profile-avatar {
-    width: 80px;
-    height: 80px;
-  }
-
-  .profile-name {
-    margin-top: 12px;
-  }
-
-  .profile-name h1 {
-    font-size: 20px;
-  }
-
-  .profile-name .username {
-    font-size: 16px;
-  }
-
-  .profile-bio {
-    font-size: 14px;
-    margin-top: 8px;
-    max-width: 300px;
-  }
-
-  .profile-meta {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 12px;
-  }
-
-  .profile-meta-item {
-    font-size: 12px;
-  }
-
-  .profile-achievements {
-    justify-content: center;
-  }
-
-  .profile-social {
-    justify-content: center;
-  }
-
-  .profile-sidebar .btn {
-    max-width: 200px;
+    display: none !important;
   }
 
   /* Section titles */
   .section-title {
     font-size: 14px;
+    font-weight: 600;
     margin-bottom: 12px;
+    margin-top: 0;
   }
 
   /* Cards */
+  .pinned-repos {
+    gap: 12px;
+  }
+
   .repo-card {
     padding: 12px;
+  }
+
+  .repo-card-header {
+    flex-wrap: wrap;
+  }
+
+  .repo-card-name {
+    font-size: 14px;
   }
 
   .repo-card-description {
     font-size: 13px;
     -webkit-line-clamp: 3;
+    margin-bottom: 12px;
   }
 
   /* Activity feed */
   .activity-item {
     padding: 12px 0;
-  }
-
-  .activity-content {
-    gap: 4px;
   }
 
   .activity-title {
@@ -2238,8 +2239,12 @@ a:hover {
   }
 
   /* Page headers */
+  .page-header {
+    margin-bottom: 16px;
+  }
+
   .page-header h1 {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .page-subtitle {
@@ -2251,13 +2256,9 @@ a:hover {
     padding-left: 20px;
   }
 
-  .timeline-item::before {
-    left: 4px;
-  }
-
   .timeline-header {
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
   }
 
   .timeline-meta {
@@ -2265,12 +2266,18 @@ a:hover {
   }
 
   .timeline-title {
-    font-size: 16px;
+    font-size: 15px;
+  }
+
+  .timeline-company {
+    font-size: 13px;
   }
 
   /* Page nav */
   .page-nav {
     flex-direction: column;
+    margin-top: 24px;
+    padding-top: 16px;
   }
 
   .page-nav .btn {
@@ -2278,18 +2285,17 @@ a:hover {
     justify-content: center;
   }
 
-  /* Project cards */
-  .project-card {
+  /* Skills */
+  .skills-tags-container {
+    gap: 20px;
+  }
+
+  .skills-category-section {
     padding: 12px;
   }
 
-  .project-description {
-    font-size: 13px;
-  }
-
-  /* Skills */
-  .skills-category-section {
-    padding: 16px;
+  .skills-category-header {
+    font-size: 14px;
   }
 
   .skill-tag {
@@ -2299,32 +2305,33 @@ a:hover {
 
   /* Contact page */
   .contact-card {
-    padding: 16px;
+    padding: 12px;
   }
 
   .form-group input,
   .form-group textarea {
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
   }
 }
 
-/* Mobile header improvements */
+/* Mobile header & nav */
 @media (max-width: 768px) {
   .mobile-header {
     padding: 10px 16px;
-    background: var(--color-canvas-default);
+    background: var(--color-canvas-subtle);
+    height: 48px;
+    border-bottom: 1px solid var(--color-border-default);
   }
 
   .mobile-header .profile-link-name {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
   }
 
   .mobile-nav {
-    top: 52px;
-    padding: 8px;
+    top: 48px;
+    padding: 0;
     background: var(--color-canvas-default);
-    border-top: 1px solid var(--color-border-default);
   }
 
   .mobile-nav a {
@@ -2332,6 +2339,8 @@ a:hover {
     font-size: 15px;
     font-weight: 500;
     border-bottom: 1px solid var(--color-border-muted);
+    display: flex;
+    align-items: center;
   }
 
   .mobile-nav a:last-child {
@@ -2340,58 +2349,5 @@ a:hover {
 
   .mobile-nav a.active {
     color: var(--color-accent-fg);
-    background: var(--color-canvas-subtle);
-  }
-
-  .mobile-nav a:hover {
-    background: var(--color-canvas-subtle);
-  }
-}
-
-/* Extra small screens */
-@media (max-width: 480px) {
-  .github-main {
-    padding: 12px;
-    padding-top: 60px;
-  }
-
-  .profile-avatar {
-    width: 64px;
-    height: 64px;
-  }
-
-  .profile-name h1 {
-    font-size: 18px;
-  }
-
-  .profile-bio {
-    font-size: 13px;
-  }
-
-  .hire-cta-card {
-    padding: 12px;
-  }
-
-  .hire-cta-title {
-    font-size: 18px;
-  }
-
-  .hire-cta-description {
-    font-size: 13px;
-  }
-
-  .code-content {
-    font-size: 11px;
-    padding: 12px;
-  }
-
-  .btn-lg {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-
-  .achievement-badge {
-    font-size: 11px;
-    padding: 2px 8px;
   }
 }
