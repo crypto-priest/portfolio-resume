@@ -91,6 +91,13 @@ export const resumeData = {
       technologies: ["Rust", "Axum", "Actix-web", "JWT"],
       link: "https://crates.io/crates/auth-middleware-pkg",
     },
+    {
+      id: 5,
+      name: "X402 Protocol (Polkadot)",
+      description: "Implemented x402 HTTP payment protocol for Polkadot ecosystem, enabling pay-per-request API monetization with automatic transaction signing and settlement. Built complete payment infrastructure: Axum-based API server, Subxt-powered facilitator service for on-chain transaction verification, and frontend client.",
+      technologies: ["Rust", "Polkadot", "Axum", "Subxt", "HTTP 402"],
+      link: "",
+    },
   ],
 
   skills: {
