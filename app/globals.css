@@ -104,18 +104,6 @@ a:hover {
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  html, body {
-    overflow-x: hidden;
-    width: 100%;
-  }
-
-  .github-app {
-    width: 100%;
-    min-width: 0;
-  }
-}
-
 .github-header {
   background: var(--color-canvas-subtle);
   border-bottom: 1px solid var(--color-border-default);
@@ -951,6 +939,11 @@ a:hover {
 }
 
 .mobile-only {
+  display: none;
+}
+
+/* Hide mobile profile on desktop */
+.mobile-profile {
   display: none;
 }
 
@@ -2189,9 +2182,93 @@ a:hover {
     width: 100%;
   }
 
-  /* Hide sidebar on mobile - show CTA card instead */
+  /* Hide desktop sidebar on mobile */
   .profile-sidebar {
     display: none !important;
+  }
+
+  /* Mobile Profile Section */
+  .mobile-profile {
+    display: block;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .mobile-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .mobile-profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .mobile-profile-info h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-fg-default);
+    margin: 0;
+  }
+
+  .mobile-profile-username {
+    font-size: 16px;
+    color: var(--color-fg-muted);
+  }
+
+  .mobile-profile-bio {
+    font-size: 14px;
+    color: var(--color-fg-default);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .mobile-profile-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .mobile-profile-links a {
+    color: var(--color-fg-muted);
+  }
+
+  .mobile-profile-links a:hover {
+    color: var(--color-accent-fg);
+  }
+
+  /* Mobile profile meta links */
+  .mobile-profile-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .mobile-meta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-fg-muted);
+    font-size: 14px;
+  }
+
+  .mobile-meta-link:hover {
+    color: var(--color-accent-fg);
+    text-decoration: none;
+  }
+
+  .mobile-meta-link svg {
+    flex-shrink: 0;
+  }
+
+  .mobile-profile-btn {
+    width: 100%;
+    margin-bottom: 12px;
   }
 
   /* Section titles */

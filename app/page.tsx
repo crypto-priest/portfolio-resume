@@ -1,5 +1,6 @@
 import { resumeData } from './data/resume-data';
 import ProfileSidebar from './components/ProfileSidebar';
+import MobileProfile from './components/MobileProfile';
 import Link from 'next/link';
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <ProfileSidebar />
 
       <div className="profile-content">
+        <MobileProfile />
         <div className="hire-cta-card">
           <div className="hire-cta-content">
             <div className="hire-cta-badge">
