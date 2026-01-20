@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import { Syne } from "next/font/google";
 import "./globals.css";
-
-const syne = Syne({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-syne",
-});
+import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "Mahavir Dash | Backend Engineer",
@@ -23,15 +17,13 @@ export const metadata: Metadata = {
   },
 };
 
-import Navbar from "./components/Navbar";
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={syne.variable}>
+    <html lang="en">
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -44,10 +36,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={syne.className}>
-        <div className="page-wrapper">
-          <Navbar />
-          <main className="main-content">
+      <body>
+        <div className="github-app">
+          <Header />
+          <main className="github-main">
             {children}
           </main>
         </div>

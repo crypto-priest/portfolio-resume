@@ -1,82 +1,116 @@
-import Link from 'next/link';
 import { resumeData } from './data/resume-data';
+import ProfileSidebar from './components/ProfileSidebar';
+import Link from 'next/link';
 
 export default function Home() {
-  const { personal } = resumeData;
+  const { projects, experience } = resumeData;
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center relative">
-      {/* Grid Background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        {/* Line Grid */}
-        <div
-          className="absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage: `linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
-          }}
-        />
-        {/* Corner glow effects */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[rgba(16,185,129,0.15)] rounded-full blur-[150px] -translate-y-1/2 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[rgba(16,185,129,0.1)] rounded-full blur-[120px] translate-y-1/3 -translate-x-1/3" />
-      </div>
+    <div className="github-profile-layout">
+      <ProfileSidebar />
 
-      <div className="container text-center relative z-10">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[var(--text-primary)] leading-snug">
-          I&apos;m a <span className="font-bold">backend engineer</span><br />
-          specializing in <span className="text-[var(--accent)]">Rust</span> and<br />
-          <span className="font-bold">Distributed Systems</span>
-        </h1>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
-          <Link href="/hire" className="btn btn-primary min-w-[180px]">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-            Hire Me
-          </Link>
-          <Link href="/projects" className="btn btn-outline min-w-[180px]">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-            </svg>
-            View Projects
-          </Link>
+      <div className="profile-content">
+        <div className="hire-cta-card">
+          <div className="hire-cta-content">
+            <div className="hire-cta-badge">
+              <span className="status-dot"></span>
+              Available for hire
+            </div>
+            <h2 className="hire-cta-title">Let's Build Something Great Together</h2>
+            <p className="hire-cta-description">
+              Backend Engineer specializing in Rust, distributed systems, and blockchain.
+              Web3 Foundation grant recipient with 3+ years of experience building scalable solutions.
+            </p>
+            <div className="hire-cta-actions">
+              <Link href="/hire" className="btn btn-primary btn-lg">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+                  <path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88l6.5-3.81Z"/>
+                </svg>
+                Get in Touch
+              </Link>
+              <a href="/resume.pdf" download className="btn btn-default btn-lg">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+                  <path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"/>
+                  <path d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z"/>
+                </svg>
+                Download Resume
+              </a>
+            </div>
+          </div>
+          <div className="hire-cta-visual">
+            <div className="code-snippet">
+              <div className="code-header">
+                <span className="code-dot"></span>
+                <span className="code-dot"></span>
+                <span className="code-dot"></span>
+                <span className="code-filename">hire_me.rs</span>
+              </div>
+              <pre className="code-content"><code><span className="code-keyword">impl</span> <span className="code-type">Engineer</span> <span className="code-keyword">for</span> <span className="code-type">Mahavir</span> {'{'}{'\n'}    <span className="code-keyword">fn</span> <span className="code-function">skills</span>() -&gt; <span className="code-type">Vec</span>&lt;&amp;<span className="code-type">str</span>&gt; {'{'}{'\n'}        <span className="code-keyword">vec!</span>[<span className="code-string">"Rust"</span>, <span className="code-string">"Systems"</span>, <span className="code-string">"Web3"</span>]{'\n'}    {'}'}{'\n'}{'}'}</code></pre>
+            </div>
+          </div>
         </div>
 
+        <div className="section-title" style={{ marginTop: 24 }}>
+          <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 0 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Z"/>
+          </svg>
+          Featured Projects
         </div>
 
-      {/* Social icons fixed at bottom */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-5 z-10">
-        <a
-          href={`https://${personal.github}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-full border-2 border-[var(--border)] flex items-center justify-center text-[var(--text-primary)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
-        >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        <div className="pinned-repos">
+          {projects.slice(0, 4).map((project) => (
+            <div key={project.id} className="repo-card">
+              <div className="repo-card-header">
+                <svg className="repo-card-icon" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/>
+                </svg>
+                {project.link ? (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="repo-card-name">
+                    {project.name}
+                  </a>
+                ) : (
+                  <span className="repo-card-name">{project.name}</span>
+                )}
+                <span className="repo-card-visibility">Public</span>
+              </div>
+              <p className="repo-card-description">{project.description}</p>
+              <div className="repo-card-footer">
+                <span className="repo-card-lang">
+                  <span className="repo-card-lang-color" style={{ backgroundColor: '#dea584' }} />
+                  {project.technologies[0]}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="section-title" style={{ marginTop: 24 }}>
+          <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+            <path d="M1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0ZM8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm.5 4.75a.75.75 0 0 0-1.5 0v3.5a.75.75 0 0 0 .471.696l2.5 1a.75.75 0 0 0 .557-1.392L8.5 7.742V4.75Z"/>
           </svg>
-        </a>
-        <a
-          href={`https://${personal.linkedin}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-full border-2 border-[var(--border)] flex items-center justify-center text-[var(--text-primary)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
-        >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-        </a>
-        <a
-          href={`https://${personal.twitter}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-full border-2 border-[var(--border)] flex items-center justify-center text-[var(--text-primary)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
-        >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        </a>
+          Work Experience
+        </div>
+
+        <div className="activity-feed">
+          {experience.slice(0, 3).map((exp) => (
+            <div key={exp.id} className="activity-item">
+              <div className="activity-icon">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.5 4.75a.75.75 0 00-1.5 0v3.5a.75.75 0 00.471.696l2.5 1a.75.75 0 00.557-1.392L8.5 7.742V4.75z"/>
+                </svg>
+              </div>
+              <div className="activity-content">
+                <div className="activity-title">
+                  <strong>{exp.title}</strong> at {exp.company}
+                </div>
+                <div className="activity-description">
+                  {exp.description[0]}
+                </div>
+                <div className="activity-time">{exp.period}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

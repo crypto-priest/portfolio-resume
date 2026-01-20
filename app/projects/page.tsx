@@ -1,173 +1,156 @@
 import { resumeData } from '../data/resume-data';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Projects | Mahavir Dash',
   description: 'Projects by Mahavir Dash - Backend Engineer',
 };
 
+// Language colors for tech tags
+const techColors: Record<string, string> = {
+  'Rust': '#dea584',
+  'Python': '#3572A5',
+  'TypeScript': '#3178c6',
+  'JavaScript': '#f1e05a',
+  'Solana': '#9945FF',
+  'Substrate': '#24CC85',
+  'PostgreSQL': '#336791',
+  'GraphQL': '#e535ab',
+  'Node.js': '#339933',
+};
+
 export default function ProjectsPage() {
   const { projects, publications } = resumeData;
 
-  // Icons for different tech stacks
-  const getProjectIcon = (technologies: string[]) => {
-    if (technologies.some(t => t.toLowerCase().includes('rust'))) {
-      return (
-        <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M23.687 11.709l-.995-.616a13.559 13.559 0 00-.028-.29l.855-.797a.344.344 0 00-.114-.571l-1.093-.409a8.392 8.392 0 00-.086-.282l.682-.947a.344.344 0 00-.205-.54l-1.152-.201a9.368 9.368 0 00-.14-.261l.483-1.063a.344.344 0 00-.29-.487l-1.167.014a6.812 6.812 0 00-.187-.229l.262-1.14a.344.344 0 00-.368-.413l-1.14.223a7.927 7.927 0 00-.226-.187l.029-1.168a.344.344 0 00-.435-.327l-1.073.427a7.948 7.948 0 00-.26-.14l-.2-1.153a.344.344 0 00-.49-.253l-.97.618a8.06 8.06 0 00-.283-.086l-.41-1.093a.344.344 0 00-.532-.173l-.833.788a9.232 9.232 0 00-.29-.028l-.616-.995a.344.344 0 00-.583 0l-.616.995a9.556 9.556 0 00-.29.028l-.832-.788a.344.344 0 00-.533.173l-.409 1.093c-.095.027-.19.055-.283.086l-.97-.618a.344.344 0 00-.49.253l-.2 1.153c-.088.045-.175.092-.26.14l-1.073-.427a.344.344 0 00-.435.327l.03 1.168a7.95 7.95 0 00-.227.187l-1.14-.223a.344.344 0 00-.368.413l.262 1.14c-.063.075-.126.151-.187.229l-1.167-.014a.344.344 0 00-.29.487l.484 1.063c-.048.086-.095.173-.14.261l-1.153.201a.344.344 0 00-.205.54l.682.947a8.422 8.422 0 00-.086.282l-1.093.409a.344.344 0 00-.114.571l.855.797a9.586 9.586 0 00-.028.29l-.995.616a.344.344 0 000 .583l.995.616c.008.097.017.194.028.29l-.855.798a.344.344 0 00.114.571l1.093.409c.027.095.055.19.086.282l-.682.947a.344.344 0 00.205.54l1.153.2c.045.089.092.176.14.262l-.484 1.063a.344.344 0 00.29.487l1.167-.014c.061.078.124.154.187.229l-.262 1.14a.344.344 0 00.368.413l1.14-.223c.074.064.15.127.226.187l-.029 1.168a.344.344 0 00.435.327l1.073-.427c.085.049.172.095.26.14l.2 1.153a.344.344 0 00.49.253l.97-.617c.093.032.188.06.283.086l.409 1.093a.344.344 0 00.533.173l.832-.788c.096.012.194.021.29.028l.616.995a.344.344 0 00.583 0l.616-.995c.097-.007.194-.016.29-.028l.833.788a.344.344 0 00.532-.173l.41-1.093c.095-.027.189-.054.283-.086l.97.617a.344.344 0 00.49-.253l.2-1.153c.088-.045.175-.091.26-.14l1.073.427a.344.344 0 00.435-.327l-.03-1.168c.077-.06.153-.123.227-.187l1.14.223a.344.344 0 00.368-.413l-.262-1.14c.063-.075.126-.151.187-.229l1.167.014a.344.344 0 00.29-.487l-.483-1.063c.047-.086.094-.173.14-.262l1.152-.2a.344.344 0 00.205-.54l-.682-.947c.031-.093.06-.187.086-.282l1.093-.409a.344.344 0 00.114-.571l-.855-.798c.011-.096.02-.193.028-.29l.995-.616a.344.344 0 000-.583zM12 18.336a6.336 6.336 0 110-12.672 6.336 6.336 0 010 12.672z"/>
-        </svg>
-      );
-    }
-    if (technologies.some(t => t.toLowerCase().includes('blockchain') || t.toLowerCase().includes('substrate'))) {
-      return (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-        </svg>
-      );
-    }
-    return (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-      </svg>
-    );
-  };
-
   return (
-    <div className="container section">
-      <h1 className="page-title">Projects</h1>
-      <p className="page-subtitle text-lg">
-        Building robust systems that scale
-      </p>
+    <div className="page-container">
+      <div className="page-header">
+        <h1>Projects</h1>
+        <p className="page-subtitle">
+          Building robust systems that scale. Each project represents a solution to real-world engineering challenges.
+        </p>
+      </div>
 
-      {/* Featured Projects Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-        {projects.map((project, index) => (
-          <div
-            key={project.id}
-            className={`group relative ${index === 0 ? 'lg:col-span-2' : ''}`}
-          >
-            {/* Card */}
-            <div className="card h-full relative overflow-hidden hover:border-[var(--accent)] transition-all duration-300">
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              {/* Decorative corner */}
-              <div className="absolute -top-12 -right-12 w-32 h-32 bg-[var(--accent)]/10 rounded-full blur-2xl group-hover:bg-[var(--accent)]/20 transition-colors duration-500" />
-
-              <div className="relative">
-                {/* Header */}
-                <div className="flex items-start gap-5 mb-6">
-                  {/* Icon */}
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--accent)] to-emerald-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-emerald-500/20">
-                    {getProjectIcon(project.technologies)}
-                  </div>
-
-                  {/* Title and Link */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
-                        {project.name}
-                      </h3>
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-shrink-0 w-10 h-10 rounded-full border border-[var(--border)] flex items-center justify-center text-[var(--text-muted)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:bg-[var(--accent)]/10 transition-all"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                          </svg>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className={`text-[var(--text-secondary)] leading-relaxed mb-6 ${index === 0 ? 'text-lg' : ''}`}>
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--bg-secondary)] text-[var(--text-muted)] text-sm font-medium border border-[var(--border)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+      {/* Featured Projects */}
+      <section className="content-section">
+        <h2 className="section-title">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 0 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25v3.25a.25.25 0 0 0 .4.2l1.45-1.087a.25.25 0 0 1 .3 0L8.6 15.7a.25.25 0 0 0 .4-.2v-3.25a.25.25 0 0 0-.25-.25h-3.5a.25.25 0 0 0-.25.25Z"/>
+          </svg>
+          Featured Projects
+        </h2>
+        <div className="projects-grid">
+          {projects.map((project) => (
+            <div key={project.id} className="project-card">
+              <div className="project-card-header">
+                <svg viewBox="0 0 16 16" fill="currentColor" className="project-icon">
+                  <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 0 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25v3.25a.25.25 0 0 0 .4.2l1.45-1.087a.25.25 0 0 1 .3 0L8.6 15.7a.25.25 0 0 0 .4-.2v-3.25a.25.25 0 0 0-.25-.25h-3.5a.25.25 0 0 0-.25.25Z"/>
+                </svg>
+                <h3 className="project-name">{project.name}</h3>
+              </div>
+              <p className="project-description">{project.description}</p>
+              <div className="project-footer">
+                <div className="project-tech">
+                  {project.technologies.slice(0, 3).map((tech) => (
+                    <span key={tech} className="tech-tag">
+                      <span
+                        className="tech-dot"
+                        style={{ backgroundColor: techColors[tech] || '#8b949e' }}
+                      />
                       {tech}
                     </span>
                   ))}
                 </div>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                  >
+                    <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+                      <path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"/>
+                    </svg>
+                    View
+                  </a>
+                )}
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Open Source Section */}
-      <div className="relative">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--accent)]/10 mb-6">
-            <svg className="w-8 h-8 text-[var(--accent)]" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
-          </div>
-          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-3">Open Source</h2>
-          <p className="text-[var(--text-muted)] text-lg">Published packages and contributions</p>
+          ))}
         </div>
+      </section>
 
-        {/* Publications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Published Packages */}
+      <section className="content-section">
+        <h2 className="section-title">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+            <path fillRule="evenodd" d="M8.878.392a1.75 1.75 0 0 0-1.756 0l-5.25 3.045A1.75 1.75 0 0 0 1 4.951v6.098c0 .624.332 1.2.872 1.514l5.25 3.045a1.75 1.75 0 0 0 1.756 0l5.25-3.045c.54-.313.872-.89.872-1.514V4.951c0-.624-.332-1.2-.872-1.514L8.878.392ZM7.875 1.69a.25.25 0 0 1 .25 0l4.63 2.685L8 7.133 3.245 4.375l4.63-2.685ZM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432L2.5 5.677Zm6.25 8.271 4.625-2.683a.25.25 0 0 0 .125-.216V5.677L8.75 8.432v5.516Z"/>
+          </svg>
+          Published Packages
+        </h2>
+        <p className="section-description">Open source contributions available on crates.io and GitHub.</p>
+        <div className="packages-grid">
           {publications.map((pub) => (
             <a
               key={pub.id}
               href={pub.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block"
+              className="package-card"
             >
-              <div className="card h-full flex flex-col hover:border-[var(--accent)] transition-all duration-300 relative overflow-hidden">
-                {/* Hover gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                <div className="relative flex-1 flex flex-col">
-                  {/* Header */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)]/10 transition-all">
-                      <svg className="w-6 h-6 text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                      </svg>
-                    </div>
-                    <svg className="w-5 h-5 text-[var(--text-subtle)] group-hover:text-[var(--accent)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10"/>
-                    </svg>
-                  </div>
-
-                  {/* Content */}
-                  <h4 className="text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-3">
-                    {pub.name}
-                  </h4>
-                  <p className="text-[var(--text-muted)] flex-1 mb-4">
-                    {pub.description}
-                  </p>
-
-                  {/* Platform Badge */}
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-sm font-semibold">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-                      </svg>
-                      {pub.platform}
-                    </span>
-                  </div>
-                </div>
+              <div className="package-header">
+                <svg viewBox="0 0 16 16" fill="currentColor" className="package-icon">
+                  <path fillRule="evenodd" d="M8.878.392a1.75 1.75 0 0 0-1.756 0l-5.25 3.045A1.75 1.75 0 0 0 1 4.951v6.098c0 .624.332 1.2.872 1.514l5.25 3.045a1.75 1.75 0 0 0 1.756 0l5.25-3.045c.54-.313.872-.89.872-1.514V4.951c0-.624-.332-1.2-.872-1.514L8.878.392ZM7.875 1.69a.25.25 0 0 1 .25 0l4.63 2.685L8 7.133 3.245 4.375l4.63-2.685ZM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432L2.5 5.677Zm6.25 8.271 4.625-2.683a.25.25 0 0 0 .125-.216V5.677L8.75 8.432v5.516Z"/>
+                </svg>
+                <span className="package-name">{pub.name}</span>
+                <span className="package-platform">{pub.platform}</span>
               </div>
+              <p className="package-description">{pub.description}</p>
             </a>
           ))}
         </div>
+      </section>
+
+      {/* Tech Stack */}
+      <section className="content-section">
+        <h2 className="section-title">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+            <path d="M11.28 3.22a.75.75 0 0 1 0 1.06L6.56 9l4.72 4.72a.75.75 0 1 1-1.06 1.06l-5.25-5.25a.75.75 0 0 1 0-1.06l5.25-5.25a.75.75 0 0 1 1.06 0Z"/>
+            <path d="m4.72 3.22 5.25 5.25a.75.75 0 0 1 0 1.06l-5.25 5.25a.75.75 0 0 1-1.06-1.06L8.44 9 3.66 4.28a.75.75 0 0 1 1.06-1.06Z"/>
+          </svg>
+          Technologies Used
+        </h2>
+        <div className="tech-stack">
+          {['Rust', 'Python', 'TypeScript', 'Substrate', 'Solana', 'PostgreSQL', 'DynamoDB', 'GraphQL', 'REST', 'WebSocket'].map((tech) => (
+            <span key={tech} className="tech-badge">
+              <span
+                className="tech-dot"
+                style={{ backgroundColor: techColors[tech] || '#8b949e' }}
+              />
+              {tech}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <div className="page-nav">
+        <a
+          href="https://github.com/crypto-priest"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-default"
+        >
+          <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+          </svg>
+          View GitHub Profile
+        </a>
+        <Link href="/skills" className="btn btn-primary">
+          View Skills
+          <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+            <path d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06Z"/>
+          </svg>
+        </Link>
       </div>
     </div>
   );

@@ -1,62 +1,92 @@
 import { resumeData } from '../data/resume-data';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Skills | Mahavir Dash',
   description: 'Technical skills of Mahavir Dash - Backend Engineer',
 };
 
-const categoryIcons: Record<string, string> = {
-  "System Design & Architecture": "M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z",
-  "Backend Development": "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-  "API Design & Protocols": "M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
-  "Database Management": "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4",
-  "Blockchain": "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z",
-  "Frontend Integration": "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-  "Tools & Frameworks": "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z",
+// Category icons
+const categoryIcons: Record<string, React.ReactNode> = {
+  'System Design & Architecture': (
+    <svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20">
+      <path d="M1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0ZM1.5 1.75v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25ZM11.75 3a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-1.5 0v-7.5a.75.75 0 0 1 .75-.75Zm-8.25.75a.75.75 0 0 1 1.5 0v5.5a.75.75 0 0 1-1.5 0ZM8 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 3Z"/>
+    </svg>
+  ),
+  'Backend Development': (
+    <svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20">
+      <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"/>
+    </svg>
+  ),
+  'API Design & Protocols': (
+    <svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20">
+      <path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"/>
+    </svg>
+  ),
+  'Database Management': (
+    <svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20">
+      <path d="M1 3.5c0-.626.292-1.165.7-1.59.406-.422.956-.767 1.579-1.041C4.525.32 6.195 0 8 0c1.805 0 3.475.32 4.722.869.622.274 1.172.619 1.579 1.041.407.425.699.964.699 1.59v9c0 .626-.292 1.165-.7 1.59-.406.422-.956.767-1.578 1.041C11.476 15.68 9.806 16 8 16c-1.805 0-3.475-.32-4.721-.869-.623-.274-1.173-.619-1.579-1.041-.408-.425-.7-.964-.7-1.59Zm1.5 0c0 .133.058.318.282.551.227.237.591.483 1.101.707C4.898 5.205 6.353 5.5 8 5.5c1.646 0 3.101-.295 4.118-.742.508-.224.873-.471 1.1-.708.224-.232.282-.417.282-.55 0-.133-.058-.318-.282-.551-.227-.237-.591-.483-1.101-.707C11.102 1.795 9.647 1.5 8 1.5c-1.647 0-3.102.295-4.117.742-.51.224-.874.47-1.101.707-.224.233-.282.418-.282.551ZM2.5 7.245v2.505c0 .133.058.318.282.55.227.238.591.484 1.101.708 1.016.447 2.47.742 4.117.742 1.646 0 3.101-.295 4.118-.742.508-.224.873-.47 1.1-.707.224-.233.282-.418.282-.551V7.245c-.351.225-.737.42-1.15.585C11.103 8.28 9.648 8.6 8 8.6c-1.648 0-3.103-.32-4.25-.77a6.088 6.088 0 0 1-1.25-.585Zm0 4.5v.755c0 .133.058.318.282.55.227.238.591.484 1.101.708 1.016.447 2.47.742 4.117.742 1.646 0 3.101-.295 4.118-.742.508-.224.873-.47 1.1-.707.224-.233.282-.418.282-.551v-.755c-.351.225-.737.42-1.15.585-1.147.45-2.602.77-4.25.77-1.648 0-3.103-.32-4.25-.77a6.088 6.088 0 0 1-1.25-.585Z"/>
+    </svg>
+  ),
+  'Blockchain': (
+    <svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20">
+      <path d="m8.878.392 5.25 3.045c.54.314.872.89.872 1.514v6.098a1.75 1.75 0 0 1-.872 1.514l-5.25 3.045a1.75 1.75 0 0 1-1.756 0l-5.25-3.045A1.75 1.75 0 0 1 1 11.049V4.951c0-.624.332-1.201.872-1.514L7.122.392a1.75 1.75 0 0 1 1.756 0ZM7.875 1.69l-4.63 2.685L8 7.133l4.755-2.758-4.63-2.685a.248.248 0 0 0-.25 0ZM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432Zm6.25 8.271 4.625-2.683a.25.25 0 0 0 .125-.216V5.677L8.75 8.432Z"/>
+    </svg>
+  ),
+  'Frontend Integration': (
+    <svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20">
+      <path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25ZM14.5 6h-13v7.25c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25Zm-6-3.5v2h6V2.75a.25.25 0 0 0-.25-.25ZM5 2.5v2h2v-2Zm-3.25 0a.25.25 0 0 0-.25.25V4.5h2v-2Z"/>
+    </svg>
+  ),
+  'Tools & Frameworks': (
+    <svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20">
+      <path d="M5.433 2.304A4.492 4.492 0 0 0 3.5 6c0 1.598.832 3.002 2.09 3.802.518.328.929.923.902 1.64v.008l-.164 3.337a.75.75 0 1 1-1.498-.073l.163-3.33c.002-.085-.05-.216-.207-.316A5.996 5.996 0 0 1 2 6a5.993 5.993 0 0 1 2.567-4.92 1.482 1.482 0 0 1 1.673-.04c.462.296.76.827.76 1.423v2.076c0 .04.015.077.042.107l.05.054h.894l.05-.054a.155.155 0 0 0 .042-.107V2.463c0-.596.298-1.127.76-1.423a1.482 1.482 0 0 1 1.673.04A5.993 5.993 0 0 1 13 6a5.996 5.996 0 0 1-2.786 5.068c-.157.1-.21.23-.207.315l.163 3.33a.75.75 0 1 1-1.498.074l-.164-3.337c-.027-.717.384-1.312.902-1.64A4.495 4.495 0 0 0 11.5 6a4.492 4.492 0 0 0-1.933-3.696c-.024.017-.067.067-.067.16v2.073a1.65 1.65 0 0 1-.467 1.155l-.05.055-.697.697h-1.572l-.697-.697-.05-.055A1.65 1.65 0 0 1 5.5 4.537V2.464c0-.093-.043-.143-.067-.16Z"/>
+    </svg>
+  ),
 };
 
 export default function SkillsPage() {
   const { skills } = resumeData;
 
   return (
-    <div className="container section">
-      <h1 className="page-title">Skills</h1>
-      <p className="page-subtitle">
-        Technologies and tools I work with
-      </p>
+    <div className="page-container">
+      <div className="page-header">
+        <h1>Skills</h1>
+        <p className="page-subtitle">
+          Technologies and tools I work with across different domains.
+        </p>
+      </div>
 
-      <div className="space-y-10 max-w-4xl mx-auto">
+      <div className="skills-tags-container">
         {Object.entries(skills).map(([category, skillList]) => (
-          <div key={category}>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-lg bg-[var(--accent)]/10 flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-[var(--accent)]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d={categoryIcons[category] || categoryIcons["Tools & Frameworks"]} />
+          <section key={category} className="skills-category-section">
+            <h2 className="skills-category-header">
+              {categoryIcons[category] || (
+                <svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20">
+                  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/>
+                  <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"/>
                 </svg>
-              </div>
-              <h3 className="text-lg font-medium text-[var(--text-primary)]">
-                {category}
-              </h3>
-            </div>
-            <div className="flex flex-wrap gap-2 pl-13">
+              )}
+              {category}
+            </h2>
+            <div className="skills-tags">
               {skillList.map((skill) => (
-                <span
-                  key={skill.name}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
+                <span key={skill.name} className="skill-tag">
                   {skill.name}
                 </span>
               ))}
             </div>
-          </div>
+          </section>
         ))}
+      </div>
+
+      <div className="page-nav">
+        <Link href="/hire" className="btn btn-primary">
+          Contact Me
+          <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+            <path d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06Z"/>
+          </svg>
+        </Link>
       </div>
     </div>
   );

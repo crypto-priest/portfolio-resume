@@ -153,6 +153,14 @@ export const resumeData = {
     },
     {
       id: 2,
+      degree: "Solana Basics",
+      school: "Solana Foundation",
+      location: "Online",
+      period: "2024",
+      description: "Solana blockchain development fundamentals and smart contract programming",
+    },
+    {
+      id: 3,
       degree: "Bachelor of Technology",
       school: "Silicon Institute of Technology, Bhubaneswar",
       location: "Bhubaneswar, India",

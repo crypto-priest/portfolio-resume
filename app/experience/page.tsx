@@ -1,4 +1,5 @@
 import { resumeData } from '../data/resume-data';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Experience | Mahavir Dash',
@@ -9,55 +10,75 @@ export default function ExperiencePage() {
   const { experience } = resumeData;
 
   return (
-    <div className="container section">
-      <h1 className="page-title">Experience</h1>
-      <p className="page-subtitle">
-        My professional journey building scalable backend systems
-      </p>
+    <div className="page-container">
+      <div className="page-header">
+        <h1>Experience</h1>
+        <p className="page-subtitle">My professional journey building scalable backend systems</p>
+      </div>
 
-      <div className="max-w-3xl mx-auto">
-        {experience.map((exp, index) => (
-          <div key={exp.id} className="relative pl-8 pb-12 last:pb-0">
-            {/* Timeline line */}
-            {index !== experience.length - 1 && (
-              <div className="absolute left-[11px] top-6 bottom-0 w-[2px] bg-[var(--border)]" />
-            )}
+      {/* Stats */}
+      <div className="stats-grid">
+        <div className="stat-card">
+          <div className="stat-value">3+</div>
+          <div className="stat-label">Years Experience</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-value">10K+</div>
+          <div className="stat-label">Users Served</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-value">99.9%</div>
+          <div className="stat-label">Uptime</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-value">110+</div>
+          <div className="stat-label">Hours Taught</div>
+        </div>
+      </div>
 
-            {/* Timeline dot */}
-            <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-[var(--accent)] flex items-center justify-center">
-              <div className="w-2 h-2 rounded-full bg-white" />
-            </div>
-
-            {/* Content */}
-            <div className="card">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-                <div>
-                  <h3 className="text-xl font-semibold text-[var(--text-primary)]">
-                    {exp.title}
-                  </h3>
-                  <p className="text-[var(--accent)]">{exp.company}</p>
-                </div>
-                <div className="text-sm text-[var(--text-muted)]">
-                  <p>{exp.period}</p>
-                  <p>{exp.location}</p>
-                </div>
+      {/* Timeline */}
+      <section className="content-section">
+        <h2 className="section-title">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+            <path d="M1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0ZM8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm.5 4.75a.75.75 0 0 0-1.5 0v3.5a.75.75 0 0 0 .471.696l2.5 1a.75.75 0 0 0 .557-1.392L8.5 7.742V4.75Z"/>
+          </svg>
+          Work History
+        </h2>
+        <div className="timeline">
+          {experience.map((exp, index) => (
+            <div key={exp.id} className="timeline-item">
+              <div className="timeline-marker">
+                {index === 0 && <span className="current-badge">Current</span>}
               </div>
-
-              <ul className="space-y-2">
-                {exp.description.map((desc, i) => (
-                  <li key={i} className="flex gap-3 text-[var(--text-secondary)]">
-                    <span className="text-[var(--accent)] mt-1.5 flex-shrink-0">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                    <span>{desc}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="timeline-content">
+                <div className="timeline-header">
+                  <div>
+                    <h3 className="timeline-title">{exp.title}</h3>
+                    <p className="timeline-company">{exp.company}</p>
+                  </div>
+                  <div className="timeline-meta">
+                    <span className="timeline-period">{exp.period}</span>
+                    <span className="timeline-location">{exp.location}</span>
+                  </div>
+                </div>
+                <ul className="timeline-list">
+                  {exp.description.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+      </section>
+
+      <div className="page-nav">
+        <Link href="/projects" className="btn btn-primary">
+          View Projects
+          <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+            <path d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06Z"/>
+          </svg>
+        </Link>
       </div>
     </div>
   );
