@@ -96,7 +96,7 @@ export const resumeData = {
       name: "X402 Protocol (Polkadot)",
       description: "Implemented x402 HTTP payment protocol for Polkadot ecosystem, enabling pay-per-request API monetization with automatic transaction signing and settlement. Built complete payment infrastructure: Axum-based API server, Subxt-powered facilitator service for on-chain transaction verification, and frontend client.",
       technologies: ["Rust", "Polkadot", "Axum", "Subxt", "HTTP 402"],
-      link: "",
+      link: "https://github.com/X402-Polkadot/x402-polkadot",
     },
   ],
 
