@@ -68,7 +68,7 @@ export default function AboutPage() {
               </svg>
             </div>
             <h3>System Architecture</h3>
-            <p>Designed distributed rate limiting system protecting 10,000+ users with 99.9% uptime against DDoS attacks.</p>
+            <p>Designed distributed rate limiting system protecting 10,000+ users against DDoS attacks.</p>
           </div>
         </div>
       </section>

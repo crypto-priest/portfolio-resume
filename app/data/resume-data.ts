@@ -18,7 +18,7 @@ export const resumeData = {
     "Partnered with STPI (Software Technology Park of India), a central government entity, to conduct technical workshops on Rust, blockchain, and backend development, contributing to skill development and technology adoption.",
     "Designed and taught a month-long Rust engineering course (110 hours) for Silicon University covering backend development and blockchain fundamentals, integrated into the academic curriculum as a credited internship program.",
     "Designed a custom consensus mechanism for private blockchain, optimizing storage efficiency through elimination of empty blocks, reducing infrastructure costs, and improving network performance.",
-    "Designed and implemented distributed rate limiting system for authentication infrastructure to prevent DDoS attacks, successfully protecting 10,000+ user system and ensuring 99.9% uptime.",
+    "Designed and implemented distributed rate limiting system for authentication infrastructure to prevent DDoS attacks, successfully protecting 10,000+ user system.",
   ],
 
   experience: [
@@ -29,7 +29,7 @@ export const resumeData = {
       location: "Remote",
       period: "05/2023 - Present",
       description: [
-        "Architected distributed authentication infrastructure serving 10,000+ users with 99.9% uptime",
+        "Architected distributed authentication infrastructure serving 10,000+ users",
         "Designed rate-limiting system with DDoS protection capabilities",
         "Built and optimized RESTful and GraphQL APIs reducing latency by 30%",
         "Developed backend systems for distributed blockchain modules with runtime upgrades",
@@ -40,7 +40,7 @@ export const resumeData = {
       title: "Technical Instructor & Speaker",
       company: "STPI & Silicon University",
       location: "Bhubaneswar, India",
-      period: "2023 - Present",
+      period: "06/2024 - 07/2025",
       description: [
         "Teaching Rust programming, backend development, and system design principles to university students and industry professionals",
         "Conducting workshops in collaboration with STPI (Software Technology Parks of India)",
@@ -145,6 +145,22 @@ export const resumeData = {
   education: [
     {
       id: 1,
+      degree: "Ayns Builders Program",
+      school: "Turbine",
+      location: "Online",
+      period: "01/2026 - Present",
+      description: "Solana Development Program by Turbine",
+    },
+    {
+      id: 2,
+      degree: "Solana Basics",
+      school: "School of Solana, Ackee",
+      location: "Bhubaneswar, India",
+      period: "12/2025",
+      description: "Solana development program by Ackee",
+    },
+    {
+      id: 3,
       degree: "Polkadot Blockchain Academy",
       school: "Polkadot/Web3 Foundation",
       location: "U Town, Singapore",
@@ -152,15 +168,7 @@ export const resumeData = {
       description: "Blockchain development program by Polkadot/Web3 Foundation",
     },
     {
-      id: 2,
-      degree: "Solana Basics",
-      school: "Solana Foundation",
-      location: "Online",
-      period: "2024",
-      description: "Solana blockchain development fundamentals and smart contract programming",
-    },
-    {
-      id: 3,
+      id: 4,
       degree: "Bachelor of Technology",
       school: "Silicon Institute of Technology, Bhubaneswar",
       location: "Bhubaneswar, India",

@@ -3,7 +3,7 @@ import ProfileSidebar from './components/ProfileSidebar';
 import Link from 'next/link';
 
 export default function Home() {
-  const { projects, experience } = resumeData;
+  const { experience } = resumeData;
 
   return (
     <div className="github-profile-layout">
@@ -52,36 +52,51 @@ export default function Home() {
 
         <div className="section-title" style={{ marginTop: 24 }}>
           <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
-            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 0 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Z"/>
+            <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/>
           </svg>
-          Featured Projects
+          Achievements
         </div>
 
         <div className="pinned-repos">
-          {projects.slice(0, 4).map((project) => (
-            <div key={project.id} className="repo-card">
-              <div className="repo-card-header">
-                <svg className="repo-card-icon" viewBox="0 0 16 16" fill="currentColor">
-                  <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/>
-                </svg>
-                {project.link ? (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="repo-card-name">
-                    {project.name}
-                  </a>
-                ) : (
-                  <span className="repo-card-name">{project.name}</span>
-                )}
-                <span className="repo-card-visibility">Public</span>
-              </div>
-              <p className="repo-card-description">{project.description}</p>
-              <div className="repo-card-footer">
-                <span className="repo-card-lang">
-                  <span className="repo-card-lang-color" style={{ backgroundColor: '#dea584' }} />
-                  {project.technologies[0]}
-                </span>
-              </div>
+          <div className="repo-card">
+            <div className="repo-card-header">
+              <svg className="repo-card-icon" viewBox="0 0 16 16" fill="currentColor" style={{ color: 'var(--color-success-fg)' }}>
+                <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/>
+              </svg>
+              <span className="repo-card-name">Web3 Foundation Grant</span>
             </div>
-          ))}
+            <p className="repo-card-description">Received a grant for developing a self-sovereign identity-based blockchain-powered gaming community, recognizing innovation in decentralized identity.</p>
+          </div>
+
+          <div className="repo-card">
+            <div className="repo-card-header">
+              <svg className="repo-card-icon" viewBox="0 0 16 16" fill="currentColor" style={{ color: 'var(--color-accent-fg)' }}>
+                <path d="M1.5 14.25c0 .138.112.25.25.25H4v-1.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v1.25h2.25a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25ZM1.75 0h8.5C11.216 0 12 .784 12 1.75v12.5c0 .085-.006.168-.018.25h2.268a.25.25 0 0 0 .25-.25V8.285a.25.25 0 0 0-.111-.208l-1.055-.703a.749.749 0 1 1 .832-1.248l1.055.703c.487.325.779.871.779 1.456v5.965A1.75 1.75 0 0 1 14.25 16h-3.5a.766.766 0 0 1-.197-.026c-.099.017-.2.026-.303.026h-3a.75.75 0 0 1-.75-.75V14h-1v1.25a.75.75 0 0 1-.75.75h-3A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0ZM3.5 4h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1 0-1.5ZM3.5 7h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1 0-1.5ZM3.5 10h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1 0-1.5Z"/>
+              </svg>
+              <span className="repo-card-name">STPI Partnership</span>
+            </div>
+            <p className="repo-card-description">Partnered with Software Technology Park of India, a central government entity, to conduct technical workshops on Rust, blockchain, and backend development.</p>
+          </div>
+
+          <div className="repo-card">
+            <div className="repo-card-header">
+              <svg className="repo-card-icon" viewBox="0 0 16 16" fill="currentColor" style={{ color: 'var(--color-done-fg)' }}>
+                <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 0 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25v3.25a.25.25 0 0 0 .4.2l1.45-1.087a.25.25 0 0 1 .3 0L8.6 15.7a.25.25 0 0 0 .4-.2v-3.25a.25.25 0 0 0-.25-.25h-3.5a.25.25 0 0 0-.25.25Z"/>
+              </svg>
+              <span className="repo-card-name">Rust Course at Silicon University</span>
+            </div>
+            <p className="repo-card-description">Designed and taught a month-long Rust engineering course (110 hours) covering backend development and blockchain fundamentals, integrated into academic curriculum.</p>
+          </div>
+
+          <div className="repo-card">
+            <div className="repo-card-header">
+              <svg className="repo-card-icon" viewBox="0 0 16 16" fill="currentColor" style={{ color: 'var(--color-attention-fg)' }}>
+                <path d="m8.878.392 5.25 3.045c.54.314.872.89.872 1.514v6.098a1.75 1.75 0 0 1-.872 1.514l-5.25 3.045a1.75 1.75 0 0 1-1.756 0l-5.25-3.045A1.75 1.75 0 0 1 1 11.049V4.951c0-.624.332-1.201.872-1.514L7.122.392a1.75 1.75 0 0 1 1.756 0ZM7.875 1.69l-4.63 2.685L8 7.133l4.755-2.758-4.63-2.685a.248.248 0 0 0-.25 0ZM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432Zm6.25 8.271 4.625-2.683a.25.25 0 0 0 .125-.216V5.677L8.75 8.432Z"/>
+              </svg>
+              <span className="repo-card-name">Custom Consensus Mechanism</span>
+            </div>
+            <p className="repo-card-description">Designed a custom consensus mechanism for private blockchain, optimizing storage efficiency through elimination of empty blocks, reducing infrastructure costs.</p>
+          </div>
         </div>
 
         <div className="section-title" style={{ marginTop: 24 }}>

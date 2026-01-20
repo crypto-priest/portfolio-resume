@@ -16,26 +16,6 @@ export default function ExperiencePage() {
         <p className="page-subtitle">My professional journey building scalable backend systems</p>
       </div>
 
-      {/* Stats */}
-      <div className="stats-grid">
-        <div className="stat-card">
-          <div className="stat-value">3+</div>
-          <div className="stat-label">Years Experience</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">10K+</div>
-          <div className="stat-label">Users Served</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">99.9%</div>
-          <div className="stat-label">Uptime</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">110+</div>
-          <div className="stat-label">Hours Taught</div>
-        </div>
-      </div>
-
       {/* Timeline */}
       <section className="content-section">
         <h2 className="section-title">
